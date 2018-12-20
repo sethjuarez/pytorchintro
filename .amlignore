@@ -1,0 +1,16 @@
+.ipynb_checkpoints
+.vscode
+.azureml
+.git
+.gitignore
+azureml-setup
+azureml-logs
+docs
+__pycache__
+data
+outputs
+logs
+*.md
+*.ipynb
+*.onnx
+*.pth
