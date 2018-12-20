@@ -64,9 +64,9 @@ def save_model(model, device, path, name):
 ###################################################################
 # Models                                                          #
 ###################################################################
-class Logistic(nn.Module):
+class SimpleLinear(nn.Module):
     def __init__(self):
-        super(Logistic, self).__init__()
+        super(SimpleLinear, self).__init__()
         self.layer1 = nn.Linear(28*28, 10)
 
     def forward(self, x):
@@ -173,7 +173,7 @@ def main(data_dir, output_dir, log_dir, epochs, batch, lr, model_kind):
 
     # model
     if model_kind == 'linear':
-        model = Logistic().to(device)
+        model = SimpleLinear().to(device)
     elif model_kind == 'nn':
         model = NeuralNework().to(device)
     else:
