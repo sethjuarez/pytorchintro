@@ -1,0 +1,4 @@
+azureml-sdk[notebooks]
+azureml-sdk[automl]
+azureml-sdk[explain]
+azureml-sdk[contrib]
