@@ -2,7 +2,7 @@
 [![Azure Notebooks](https://notebooks.azure.com/launch.svg)](https://notebooks.azure.com/import/gh/sethjuarez/pytorchintro)
 
 Do this:
-1. Click the Launch button
+1. Click the Launch button above. In the new page that opens click the "Import" button to import the notebook.
 2. Run [start.ipynb](start.ipynb) to learn about ML and PyTorch
 3. Run [cloud.ipynb](cloud.ipynb) to learn about AzureML service
 4. (other things)
