@@ -38,7 +38,8 @@ def get_dataloader(train=True, batch_size=64, data_dir='data'):
                             transforms.Lambda(lambda x: x.reshape(28*28))
                         ]),
                         target_transform=transforms.Compose([
-                            transforms.Lambda(lambda y: torch.zeros(10, dtype=torch.float).scatter_(0, y, 1))
+                            transforms.Lambda(lambda y: 
+                                torch.zeros(10, dtype=torch.float).scatter_(0, torch.tensor(y), value=1))
                         ])
                      )
 
@@ -153,8 +154,21 @@ def main(data_dir, output_dir, log_dir, epochs, batch, lr, model_kind):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     # AML Logging (if available)
-    try:
-        run = Run.get_context()
+
+    run = Run.get_context()
+    if 'offline' in str(run).lower():
+        run = None
+        info(f'Run params (torch v{torch.__version__})')
+        print(f'data: {data_dir}')
+        print(f'output: {output_dir}')
+        print(f'logs: {log_dir}')
+        print(f'epochs: {epochs}')
+        print(f'batch: {batch}')
+        print(f'learning_rate: {lr}')
+        print(f'model_kind: {model_kind}')
+        print(f'device: {device}')
+    else:
+        print(str(run))
         print('Using AML Logging...')
         run.log('data', data_dir)
         run.log('output', output_dir)
@@ -164,8 +178,6 @@ def main(data_dir, output_dir, log_dir, epochs, batch, lr, model_kind):
         run.log('learning_rate', lr)
         run.log('model_kind', model_kind)
         run.log('device', device)
-    except:
-        run = None
 
     # get data loaders
     training = get_dataloader(train=True, batch_size=batch, data_dir=data_dir)
