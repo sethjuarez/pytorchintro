@@ -9,8 +9,6 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from azureml.core.run import Run
-
 ###################################################################
 # Helpers                                                         #
 ###################################################################
@@ -109,8 +107,9 @@ class CNN(nn.Module):
 ###################################################################
 # Train/Test                                                      #
 ###################################################################
-def train(model, device, dataloader, cost, optimizer, epoch, run):
+def train(model, device, dataloader, cost, optimizer, epoch):
     model.train()
+    print(f'Epoch {epoch}')
     for batch, (X, Y) in enumerate(dataloader):
         X, Y = X.to(device), Y.to(device)
         optimizer.zero_grad()
@@ -119,18 +118,15 @@ def train(model, device, dataloader, cost, optimizer, epoch, run):
         loss.backward()
         optimizer.step()
 
-        if run != None:
-            run.log('loss', loss.item())
-
         if batch % 100 == 0:
             print('loss: {:>10f}  [{:>5d}/{:>5d}]'.format(loss.item(), batch * len(X), len(dataloader.dataset)))
 
-def test(model, device, dataloader, cost, run):
+def test(model, device, dataloader, cost):
     model.eval()
     test_loss = 0
     correct = 0
     with torch.no_grad():
-        for batch, (X, Y) in enumerate(dataloader):
+        for _, (X, Y) in enumerate(dataloader):
             X, Y = X.to(device), Y.to(device)
             pred = model(X)
 
@@ -139,9 +135,6 @@ def test(model, device, dataloader, cost, run):
 
     test_loss /= len(dataloader.dataset)
     correct /= len(dataloader.dataset)
-
-    if run != None:
-        run.log('accuracy', 100*correct)
 
     print('\nTest Error:')
     print('acc: {:>0.1f}%, avg loss: {:>8f}'.format(100*correct, test_loss))
@@ -153,31 +146,15 @@ def main(data_dir, output_dir, log_dir, epochs, batch, lr, model_kind):
     # use GPU?
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-    # AML Logging (if available)
-
-    run = Run.get_context()
-    if 'offline' in str(run).lower():
-        run = None
-        info(f'Run params (torch v{torch.__version__})')
-        print(f'data: {data_dir}')
-        print(f'output: {output_dir}')
-        print(f'logs: {log_dir}')
-        print(f'epochs: {epochs}')
-        print(f'batch: {batch}')
-        print(f'learning_rate: {lr}')
-        print(f'model_kind: {model_kind}')
-        print(f'device: {device}')
-    else:
-        print(str(run))
-        print('Using AML Logging...')
-        run.log('data', data_dir)
-        run.log('output', output_dir)
-        run.log('logs', log_dir)
-        run.log('epochs', epochs)
-        run.log('batch', batch)
-        run.log('learning_rate', lr)
-        run.log('model_kind', model_kind)
-        run.log('device', device)
+    info(f'Run params (torch v{torch.__version__})')
+    print(f'data: {data_dir}')
+    print(f'output: {output_dir}')
+    print(f'logs: {log_dir}')
+    print(f'epochs: {epochs}')
+    print(f'batch: {batch}')
+    print(f'learning_rate: {lr}')
+    print(f'model_kind: {model_kind}')
+    print(f'device: {device}')
 
     # get data loaders
     training = get_dataloader(train=True, batch_size=batch, data_dir=data_dir)
@@ -202,8 +179,8 @@ def main(data_dir, output_dir, log_dir, epochs, batch, lr, model_kind):
 
     for epoch in range(1, epochs + 1):
         info('Epoch {}'.format(epoch))
-        train(model, device, training, cost, optimizer, epoch, run)
-        test(model, device, testing, cost, run)
+        train(model, device, training, cost, optimizer, epoch)
+        test(model, device, testing, cost)
 
     # save model
     info('Saving Model')
