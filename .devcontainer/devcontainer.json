@@ -1,11 +1,13 @@
 {
-	"name": "PyTorch",
+    "name": "PyTorch",
+    "image": "pytorch/pytorch",
+    /*
 	"build": { 
 		"context": "..",
 		"dockerfile": "Dockerfile",
 		"args": { }
 	},
-
+    */
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash",
