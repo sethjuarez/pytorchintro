@@ -7,7 +7,18 @@ import torch.nn as nn
 from io import StringIO
 import torch.nn.functional as F
 
-from azureml.core.model import Model
+class NeuralNework(nn.Module):
+    def __init__(self):
+        super(NeuralNework, self).__init__()
+        self.layer1 = nn.Linear(28*28, 512)
+        self.layer2 = nn.Linear(512, 512)
+        self.output = nn.Linear(512, 10)
+
+    def forward(self, x):
+        x = F.relu(self.layer1(x))
+        x = F.relu(self.layer2(x))
+        x = self.output(x)
+        return F.softmax(x, dim=1)
 
 class CNN(nn.Module):
     def __init__(self):
@@ -27,18 +38,15 @@ class CNN(nn.Module):
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
         return F.softmax(x, dim=1)
-
+        
+model, device = None, None
 def init():
     global model, device
-
-    try:
-        model_path = Model.get_model_path('PyTorchMNIST')
-    except:
-        model_path = 'outputs/model.pth'
+    model_path = 'outputs/model.pth'
 
     device = torch.device('cpu')
 
-    model = CNN()
+    model = NeuralNework()
     model.load_state_dict(torch.load(model_path, map_location=device), strict=False)
     model.to(device)
     model.eval()
