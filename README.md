@@ -10,7 +10,7 @@ Do this:
 
 ![codespace build](images/codespace_build.png)
 
-4. Open [notebook](learn.ipynb)
+4. Open [learn.ipynb](learn.ipynb)
 
 ![open notebook](images/learn_ipynb.png)
 
@@ -49,12 +49,6 @@ of the inputs and answers. The process usually proceeds as follows:
 5. Optimize the model parameters
 6. Save model
 7. Put model into production
-
-The notebooks presented in this repo are divided into two
-overlpping sections:
-
-- Problem, Data, Experimentation - Local
-- Large Scale Experimentation, Deployment - Cloud
 
 # Local
 The [starting notebook](learn.ipynb) shows the local approach
