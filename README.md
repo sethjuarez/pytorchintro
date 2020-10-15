@@ -23,7 +23,7 @@ Do this:
 
 (OPTIONAL)
 
-8. Run the [training](train.py) and/or [scoring](score.py) script
+8. Run the [training](train.py) script by executing `python train.py` in the codespaces terminal
 
 ![run script](images/script_run.png)
 
