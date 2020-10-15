@@ -1,12 +1,32 @@
 # TL;DR
-[![Azure Notebooks](https://notebooks.azure.com/launch.svg)](https://notebooks.azure.com/import/gh/sethjuarez/pytorchintro)
 
 Do this:
-1. Click the Launch button above. In the new page that opens click the "Import" button to import the notebook.
-2. Run [start.ipynb](start.ipynb) to learn about ML and PyTorch
-3. Run [cloud.ipynb](cloud.ipynb) to learn about AzureML service
-4. (other things)
-5. Become a multi-millionaire AI startup founder
+1. Clone this repo
+2. Create new codespace
+
+![New codespace](images/new_codespace.png)
+
+3. Wait for the codespace container to build (takes 5-6m)
+
+![codespace build](images/codespace_build.png)
+
+4. Open [notebook](learn.ipynb)
+
+![open notebook](images/learn_ipynb.png)
+
+5. Run all teh things! (Hit `SHIFT-ENTER` in all of the cells: I closed the file explorer to get more space too)
+
+![run notebook](images/nb_run.png)
+
+6. (Other things...)
+7. Become a millionaire
+
+(OPTIONAL)
+
+8. Run the [training](train.py) and/or [scoring](score.py) script
+
+![run script](images/script_run.png)
+
 
 Add an issue to the repo if something doesn't work so I can 
 fix it!
@@ -37,22 +57,13 @@ overlpping sections:
 - Large Scale Experimentation, Deployment - Cloud
 
 # Local
-The [starting notebook](start.ipynb) shows the local approach
+The [starting notebook](learn.ipynb) shows the local approach
 to the Machine Learning Process. In this notebook you will
 find the first 5 steps outlined above but on a smaller scale
 (in this case the problem is small as is - generally for larger
 problems we begin on a small scale and then once some of the
 hypothesis are proved we move to large scale).
 
-# Cloud
-The [cloud notebook](cloud.ipynb) shows what a large scale
-approach would be using Azure Machine Learning service and
-covers steps 4-7 outlined above. In this case the dataset
-size has not changed at all and can be run locally without
-problem but you can imagine a scenario where we test out
-our thoughts on a small subset of all available data locally
-and then move to cloud scale when testing our hypothesis' on
-the full dataset.
 
 # Problem
 Because I am more interested that you learn the process I decided
