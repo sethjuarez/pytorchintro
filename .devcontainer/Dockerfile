@@ -1,12 +1,11 @@
-FROM jcrist/alpine-conda:4.6.8
+FROM pytorch/pytorch
 
-RUN /opt/conda/bin/conda update -n base -c defaults conda \
-    && /opt/conda/bin/conda install --yes --freeze-installed \
-        pytorch torchvision cpuonly  \
-        matplotlib \
-        ipykernel \
-        jupyter -c pytorch \
-    && /opt/conda/bin/conda clean -afy \
-    && find /opt/conda/ -follow -type f -name '*.a' -delete \
-    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
-    && find /opt/conda/ -follow -type f -name '*.js.map' -delete
+RUN apt-get update \
+    && export DEBIAN_FRONTEND=noninteractive
+    
+RUN conda config --add channels conda-forge \
+    && conda update -n base -c defaults conda \
+    # maybe get a full environment.yml file	
+    # for more precision later on	
+    && conda install -y matplotlib ipykernel jupyter \
+    && rm -rf /opt/conda/pkgs/*
