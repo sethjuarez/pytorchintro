@@ -1,10 +1,6 @@
 {
     "name": "PyTorch",
-	"build": { 
-		"context": "..",
-		"dockerfile": "Dockerfile",
-		"args": { }
-	},
+    "image": "sethjuarez/torchvision-cpu-slim",
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
         "terminal.integrated.shell.linux": "/bin/bash",
