@@ -6,10 +6,7 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "workbench.startupEditor": "none",
         "files.autoSave": "afterDelay",
-        "python.insidersChannel": "off",
-        "python.dataScience.searchForJupyter": true,
-        "python.dataScience.alwaysTrustNotebooks": true,
-        "python.dataScience.disableJupyterAutoStart": false
+        "python.dataScience.alwaysTrustNotebooks": true
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
