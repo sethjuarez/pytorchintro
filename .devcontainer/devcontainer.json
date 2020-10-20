@@ -10,15 +10,12 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "python.dataScience.alwaysTrustNotebooks": true,
         "workbench.startupEditor": "none",
-        "workbench.iconTheme": "vscode-icons",
         "files.autoSave": "afterDelay"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-        "vscode-icons-team.vscode-icons",
-        "ms-python.python",
-        "ms-python.vscode-pylance"
+        "ms-python.python"
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
