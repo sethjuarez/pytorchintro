@@ -2,6 +2,7 @@ FROM python:3.8-slim
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     pip install --no-cache-dir \
+                    pylint \
                     matplotlib \
                     ipykernel \
                     jupyter \

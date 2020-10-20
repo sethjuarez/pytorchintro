@@ -7,7 +7,9 @@
         "workbench.startupEditor": "none",
         "files.autoSave": "afterDelay",
         "python.dataScience.enabled": true,
-        "python.dataScience.alwaysTrustNotebooks": true
+        "python.dataScience.alwaysTrustNotebooks": true,
+        "python.insidersChannel": "weekly",
+        "python.showStartPage": false
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
