@@ -196,7 +196,7 @@ if __name__ == '__main__':
     parser.add_argument('-b', '--batch', help='batch size', default=100, type=int)
     parser.add_argument('-l', '--lr', help='learning rate', default=0.001, type=float)
 
-    parser.add_argument('-m', '--model', help='model type', default='cnn', choices=['linear', 'nn', 'cnn'])
+    parser.add_argument('-m', '--model', help='model type', default='linear', choices=['linear', 'nn', 'cnn'])
 
     args = parser.parse_args()
 
