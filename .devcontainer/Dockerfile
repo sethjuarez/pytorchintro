@@ -1,11 +1,6 @@
-FROM pytorch/pytorch
+FROM python:3.8-slim
 
-RUN apt-get update \
-    && export DEBIAN_FRONTEND=noninteractive
-    
-RUN conda config --add channels conda-forge \
-    && conda update -n base -c defaults conda \
-    # maybe get a full environment.yml file	
-    # for more precision later on	
-    && conda install -y matplotlib ipykernel jupyter \
-    && rm -rf /opt/conda/pkgs/*
+RUN export DEBIAN_FRONTEND=noninteractive
+RUN pip install --no-cache-dir matplotlib ipykernel jupyter
+RUN pip install --no-cache-dir torch==1.6.0+cpu torchvision==0.7.0+cpu \
+    -f https://download.pytorch.org/whl/torch_stable.html
