@@ -2,7 +2,7 @@
     "name": "PyTorch",
 	"build": { 
 		"context": "..",
-		"dockerfile": "Dockerfile",
+		"dockerfile": "slim.Dockerfile",
 		"args": { }
 	},
 	// Set *default* container specific settings.json values on container create.

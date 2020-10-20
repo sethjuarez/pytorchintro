@@ -1,14 +1,7 @@
-FROM jcrist/alpine-conda:4.6.8
+FROM python:3.8-slim
 
 RUN export DEBIAN_FRONTEND=noninteractive
-    
-RUN /opt/conda/bin/conda update -n base -c defaults conda \
-    && /opt/conda/bin/conda install --yes --freeze-installed \
-        pytorch torchvision cpuonly  \
-        matplotlib \
-        ipykernel \
-        jupyter -c pytorch \
-    && /opt/conda/bin/conda clean -afy \
-    && find /opt/conda/ -follow -type f -name '*.a' -delete \
-    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
-    && find /opt/conda/ -follow -type f -name '*.js.map' -delete
+RUN pip install --no-cache-dir matplotlib ipykernel jupyter
+RUN pip install --no-cache-dir torch==1.6.0+cpu torchvision==0.7.0+cpu \
+    -f https://download.pytorch.org/whl/torch_stable.html
+
