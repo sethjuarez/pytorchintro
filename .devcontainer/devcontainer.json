@@ -6,6 +6,7 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "workbench.startupEditor": "none",
         "files.autoSave": "afterDelay",
+        "python.dataScience.enabled": true,
         "python.dataScience.alwaysTrustNotebooks": true
 	},
 
