@@ -8,12 +8,17 @@
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
         "terminal.integrated.shell.linux": "/bin/bash",
-        "python.dataScience.alwaysTrustNotebooks": true
+        "python.dataScience.alwaysTrustNotebooks": true,
+        "workbench.startupEditor": "none",
+        "workbench.iconTheme": "vscode-icons",
+        "files.autoSave": "afterDelay"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"ms-python.python"
+        "vscode-icons-team.vscode-icons",
+        "ms-python.python",
+        "ms-python.vscode-pylance"
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
